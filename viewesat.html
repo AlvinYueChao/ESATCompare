@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View ESAT</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<select class="form-control" id="environments" style="width: 10%;margin: 10px 0px">
+					<option>Prod</option>
+					<option>QA</option>
+					<option>UAT</option>
+					<option>DEV</option>
+				</select>			
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="tabbable" id="esatcomponents">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#panel-resource" data-toggle="tab">Resource</a>
+						</li>
+						<li>
+							<a href="#panel-policy" data-toggle="tab">Policy</a>
+						</li>
+						<li>
+							<a href="#panel-role" data-toggle="tab">Role</a>
+						</li>
+						<li>
+							<a href="#panel-attribute" data-toggle="tab">Attribute</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-resource">
+							<p>I'm Resources page.</p>
+						</div>
+						<div class="tab-pane" id="panel-policy">
+							<p>I'm Policy page.</p>
+						</div>
+						<div class="tab-pane" id="panel-role">
+							<p>I'm Role page.</p>
+						</div>
+						<div class="tab-pane" id="panel-attribute">
+							<p>I'm Attribute page.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>
