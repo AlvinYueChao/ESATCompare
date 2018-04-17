@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ESAT Compare</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<!-- dashboard leftMenu style -->
+	<style type="text/css">
+		.panel-group{max-height: 770px;overflow: auto;}
+		.leftMenu{margin: 10px;margin-top: 5px;}
+		.leftMenu .panel-heading{font-size: 14px;padding-left: 20px;height: 36px;line-height: 36px;color: white;position: relative;cursor: pointer;}/*convert to hand icon*/
+		.leftMenu .panel-heading span{position: absolute;right: 10px;top: 12px;}
+		.leftMenu .menu-item-left{padding: 2px;background: transparent;border: 1px solid transparent;border-radius: 6px;}
+		.leftMenu .menu-item-left:hover{background: #C4E3F3;border: 1px solid #1E90FF;}
+	</style>
+</head>
+<body style="margin:5px;padding: 5px">
+	<div class="row">
+		<div class="col-md-2" id="leftmenu">
+			<div class="panel-group table-responsive" role="tablist">
+				<div class="panel panel-primary leftMenu">
+					<!--point out collapse list group by using data-target-->
+					<div class="panel-heading" id="collapseListGroupHeadingOne" data-toggle="collapse" data-target="#collapseListGroupOne" role="tab">
+						<h4 class="panel-title">							
+							View ESAT
+							<span class="glyphicon glyphicon-chevron-up right"></span>
+						</h4>
+					</div>
+					<!-- .panel-collapse and .collapse used to define collapse elements .in means show the element -->
+					<div id="collapseListGroupOne" class="panel-collapse collapse in" role="tabpanelOne" aria-labelledby="collapseListGroupHeadingOne">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<!-- use data-target to define URL -->
+								<button class="menu-item-left" onclick="loadPage('viewesat.html')">
+									<span class="glyphicon glyphicon-triangle-right"></span>
+									View ESAT
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-primary leftMenu">
+					<div class="panel-heading" id="collapseListGroupHeadingTwo" data-toggle="collapse" data-target="#collapseListGroupTwo" role="tab">
+						<h4 class="panel-title">
+							Compare ESAT
+							<span class="glyphicon glyphicon-chevron-down right"></span>
+						</h4>
+					</div>
+					<div id="collapseListGroupTwo" class="panel-collapse collapse" role="tabpanelOne" aria-labelledby="collapseListGroupHeadingTwo">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<button class="menu-item-left" onclick="loadPage('compareresource.html')">
+									<span class="glyphicon glyphicon-triangle-right"></span>
+									Compare Resource
+								</button>
+							</li>
+							<li class="list-group-item">
+								<button class="menu-item-left" onclick="loadPage('comparepolicy.html')">
+									<span class="glyphicon glyphicon-triangle-right"></span>
+									Compare Policy
+								</button>
+							</li>
+							<li class="list-group-item">
+								<button class="menu-item-left" onclick="loadPage('comparerole.html')">
+									<span class="glyphicon glyphicon-triangle-right"></span>
+									Compare Role
+								</button>
+							</li>
+							<li class="list-group-item">
+								<button class="menu-item-left" onclick="loadPage('compareattribute.html')">
+									<span class="glyphicon glyphicon-triangle-right"></span>
+									Compare Attribute
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<Iframe id="iframepage" width="auto" height="auto" scrolling="auto" frameborder="1" onLoad="changeFrameSize()"></iframe>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script>
+		$(function(){
+			$(".panel-heading").click(function(e){
+				/*collapse specific icon when switch panel*/
+				$(this).find("span").toggleClass("glyphicon-chevron-down");
+				$(this).find("span").toggleClass("glyphicon-chevron-up");
+			})
+		})
+		function changeFrameSize(){
+			var ifm = document.getElementById("iframepage");
+			var lMenu = document.getElementById("leftmenu");
+			ifm.height = document.documentElement.clientHeight;
+			ifm.width = document.documentElement.clientWidth - lMenu.offsetWidth;
+		}
+		window.onresize = function(){
+			changeFrameSize();
+		}
+		function loadPage(pageName){
+			//improve check if file exists.
+			document.getElementById("iframepage").src=pageName;
+		}
+	</script>
+</body>
+</html>
