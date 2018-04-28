@@ -78,7 +78,7 @@
 			</div>
 		</div>
 		<div class="col-md-10">
-			<Iframe id="iframepage" width="auto" height="auto" scrolling="auto" frameborder="1" onLoad="changeFrameSize()"></iframe>
+			<Iframe id="iframepage" scrolling="no" width="100%" height="100%" frameborder="1"></iframe>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
@@ -91,15 +91,6 @@
 				$(this).find("span").toggleClass("glyphicon-chevron-up");
 			})
 		})
-		function changeFrameSize(){
-			var ifm = document.getElementById("iframepage");
-			var lMenu = document.getElementById("leftmenu");
-			ifm.height = document.documentElement.clientHeight;
-			ifm.width = document.documentElement.clientWidth - lMenu.offsetWidth;
-		}
-		window.onresize = function(){
-			changeFrameSize();
-		}
 		function loadPage(pageName){
 			//improve check if file exists.
 			document.getElementById("iframepage").src=pageName;
