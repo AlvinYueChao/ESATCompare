@@ -5,9 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.jsonview.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row clearfix">
 			<div class="form-inline" style="margin: 20px 15px">
 				<select class="selectpicker" id="select-environment" title="--environment--" data-width="13%">
@@ -17,7 +18,7 @@
 					<option>DEV</option>
 				</select>
 				<input id="input-usersoeid" type="text" class="form-control" placeholder="User SoeID" style="width: 13%;margin: 0px 20px">
-				<button class="btn" id="btn-submit" style="width: auto;">Submit</button>
+				<button class="btn" id="btn-submit" style="width: auto;" onclick="getUserESAT()">Submit</button>
 			</div>
 		</div>
 		<div class="row clearfix">
@@ -37,18 +38,18 @@
 							<a href="#panel-attribute" data-toggle="tab">Attribute</a>
 						</li>
 					</ul>
-					<div class="tab-content" style="padding: 10px">
+					<div class="tab-content" style="padding: 10px;table-layout: fixed;width: 100%;">
 						<div class="tab-pane active" id="panel-resource">
-							<p>I'm Resources page.</p>
+							<div id="resource-tab"></div>
 						</div>
 						<div class="tab-pane" id="panel-policy">
-							<p>I'm Policy page.</p>
+							<div id="policy-tab"></div>
 						</div>
 						<div class="tab-pane" id="panel-role">
-							<p>I'm Role page.</p>
+							<div id="role-tab"></div>
 						</div>
 						<div class="tab-pane" id="panel-attribute">
-							<p>I'm Attribute page.</p>
+							<div id="attribute-tab"></div>
 						</div>
 					</div>
 				</div>
@@ -58,5 +59,210 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jsonview.js"></script>
+	<script>
+		var resourceData = [
+			{
+				"id": "resourceid1",
+				"name": "resourcename1",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceidt2",
+				"name": "resourcename2",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid3",
+				"name": "resourcename3",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid4",
+				"name": "resourcename4",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid5",
+				"name": "resourcename5",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid6",
+				"name": "resourcename6",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid7",
+				"name": "resourcename7",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid8",
+				"name": "resourcename8",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid9",
+				"name": "resourcename9",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid10",
+				"name": "resourcename10",
+				"entry_type": "0"
+			}
+		];
+		var policyData = [
+			{
+				"id": "policyid1",
+				"name": "policyname1"
+			},
+			{
+				"id": "policyid2",
+				"name": "policyname2"
+			},
+			{
+				"id": "policyid3",
+				"name": "policyname3"
+			},
+			{
+				"id": "policyid4",
+				"name": "policyname4"
+			},
+			{
+				"id": "policyid5",
+				"name": "policyname5"
+			},
+			{
+				"id": "policyid6",
+				"name": "policyname6"
+			}
+		];
+		var roleData = [
+			{
+				"id": "roleid1",
+				"name": "rolename1",
+				"description": "roledescription1"
+			},
+			{
+				"id": "roleid2",
+				"name": "rolename2",
+				"description": "roledescription2"
+			},
+			{
+				"id": "roleid3",
+				"name": "rolename3",
+				"description": "roledescription3"
+			},
+			{
+				"id": "roleid4",
+				"name": "rolename4",
+				"description": "roledescription4"
+			},
+			{
+				"id": "roleid5",
+				"name": "rolename5",
+				"description": "roledescription5"
+			},
+			{
+				"id": "roleid6",
+				"name": "rolename6",
+				"description": "roledescription6"
+			},
+			{
+				"id": "roleid7",
+				"name": "rolename7",
+				"description": "roledescription7"
+			},
+			{
+				"id": "roleid8",
+				"name": "rolename8",
+				"description": "roledescription8"
+			}
+			
+		];
+		var attributeData = {
+			"resourceAttributeList": [
+				{
+					"resource": {
+						"id": "resourceid1",
+						"name": "resourcename1",
+						"entry_type": "0"
+					},
+					"attributes": {
+						"attributeList": [
+							{
+								"id": "attributeid1",
+								"value": {
+									"isRange": false,
+									"isList": false,
+									"valueType": "4",
+									"value": "attributevalue1"
+								}
+							},
+							{
+								"id": "attributeid2",
+								"value": {
+									"isRange": false,
+									"isList": false,
+									"valueType": "4",
+									"value": "attributevalue2"
+								}
+							}
+						]
+					}
+				},
+				{
+					"resource": {
+						"id": "resourceid2",
+						"name": "resourcename2",
+						"entry_type": "0"
+					},
+					"attributes": {
+						"attributeList": [
+							{
+								"id": "attributeid3",
+								"value": {
+									"isRange": false,
+									"isList": false,
+									"valueType": "4",
+									"value": "attributevalue3"
+								}
+							},
+							{
+								"id": "attributeid4",
+								"value": {
+									"isRange": false,
+									"isList": false,
+									"valueType": "4",
+									"value": "attributevalue4"
+								}
+							}
+						]
+					}
+				}
+			]
+		};
+		function getUserESAT(){
+			var envs = document.getElementById("select-environment");
+			var user = document.getElementById("input-usersoeid");
+			if(envs.selectedIndex != 0 && user.value != ""){				
+				//get data from web service
+				var selectedEnv = envs.options[envs.selectedIndex].value;
+				var userSoeID = user.value;
+				alert(selectedEnv + " " + userSoeID);
+			}
+			else{
+				alert("You must select an environment and input a userId!");
+			}
+		};
+		$(function(){
+            $("#resource-tab").JSONView(resourceData);
+            $("#policy-tab").JSONView(policyData);
+            $("#role-tab").JSONView(roleData);
+            $("#attribute-tab").JSONView(attributeData);
+		});
+	</script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 		.leftMenu .menu-item-left:hover{background: #C4E3F3;border: 1px solid #1E90FF;}
 	</style>
 </head>
-<body style="margin:5px;padding: 5px">
+<body style="margin:5px;padding: 5px;overflow:hidden;">
 	<div class="row">
 		<div class="col-md-2" id="leftmenu">
 			<div class="panel-group table-responsive" role="tablist">
@@ -78,28 +78,25 @@
 			</div>
 		</div>
 		<div class="col-md-10">
-			<Iframe id="iframepage" width="auto" height="auto" scrolling="auto" frameborder="1" onLoad="changeFrameSize()"></iframe>
+			<Iframe id="iframepage" scrolling="auto" frameborder="1"></iframe>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script>
-		$(function(){
-			$(".panel-heading").click(function(e){
-				/*collapse specific icon when switch panel*/
-				$(this).find("span").toggleClass("glyphicon-chevron-down");
-				$(this).find("span").toggleClass("glyphicon-chevron-up");
-			})
-		})
-		function changeFrameSize(){
-			var ifm = document.getElementById("iframepage");
-			var lMenu = document.getElementById("leftmenu");
-			ifm.height = document.documentElement.clientHeight;
-			ifm.width = document.documentElement.clientWidth - lMenu.offsetWidth;
-		}
-		window.onresize = function(){
-			changeFrameSize();
-		}
+        $(function () {
+            $(".panel-heading").click(function (e) {
+                /*collapse specific icon when switch panel*/
+                $(this).find("span").toggleClass("glyphicon-chevron-down");
+                $(this).find("span").toggleClass("glyphicon-chevron-up");
+            })
+        });
+        window.onload = function () {
+            var iframe = document.getElementById("iframepage");
+            var leftMenu = document.getElementById("leftmenu");
+            iframe.width = document.documentElement.clientWidth - leftMenu.offsetWidth - 15;
+            iframe.height = document.documentElement.clientHeight - 15;
+        };
 		function loadPage(pageName){
 			//improve check if file exists.
 			document.getElementById("iframepage").src=pageName;
