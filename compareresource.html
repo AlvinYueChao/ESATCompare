@@ -2,8 +2,166 @@
 <html>
 <head>
 	<title>Compare Resource</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.jsonview.css">
 </head>
 <body>
-	compare resource page.
+	<div class="container-fluid" style="margin: 0 15px">
+		<div class="row clearfix">
+			<div class="col-md-5">
+				<div class="row clearfix">
+					<div class="form-inline" style="margin: 20px 0">
+						<select class="selectpicker" id="select-firstenvironment" title="--environment--" data-width="auto">
+							<option>Prod</option>
+							<option>QA</option>
+							<option>UAT</option>
+							<option>DEV</option>
+						</select>
+						<input id="input-firstuserid" type="text" class="form-control" placeholder="User SoeId" style="margin: 0 15px">
+						<button id="btn-submitfirstquery" class="btn" style="width: auto">Submit</button>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div id="div-firstresource" style="padding: 10px; border: 1px solid black; width: 100%; height: 835px; overflow:auto"></div>
+				</div>
+			</div>
+			<div class="col-md-2" style="padding-top: 450px; padding-left: 15px; padding-right: 15px">
+				<button class="btn" id="btn-executediff" style="width: 100%">Execute Diff</button>
+			</div>
+			<div class="col-md-5">
+				<div class="row clearfix">
+					<div class="form-inline"  style="margin: 20px 0">
+						<select class="selectpicker" id="select-secondenvironment" title="--environment--" data-width="auto">
+							<option>Prod</option>
+							<option>QA</option>
+							<option>UAT</option>
+							<option>DEV</option>
+						</select>
+						<input id="input-seconduserid" type="text" class="form-control" placeholder="User SoeId" style="margin: 0 15px">
+						<button id="btn-submitsecondquery" class="btn" style="width: auto">Submit</button>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div id="div-secondresource" style="padding: 10px; border: 1px solid black; width: 100%; height: 835px; overflow:auto"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jsonview.js"></script>
+	<script>
+		var resourceDataOne = [
+			{
+				"id": "resourceid1",
+				"name": "resourcename1",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceidt2",
+				"name": "resourcename2",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid3",
+				"name": "resourcename3",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid4",
+				"name": "resourcename4",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid5",
+				"name": "resourcename5",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid6",
+				"name": "resourcename6",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid7",
+				"name": "resourcename7",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid8",
+				"name": "resourcename8",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid9",
+				"name": "resourcename9",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid10",
+				"name": "resourcename10",
+				"entry_type": "0"
+			}
+		];
+		var resourceDataTwo = [
+			{
+				"id": "resourceid1",
+				"name": "resourcename1",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceidt21",
+				"name": "resourcename2",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid3",
+				"name": "resourcename31",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid4",
+				"name": "resourcename4",
+				"entry_type": "1"
+			},
+			{
+				"id": "resourceid5",
+				"name": "resourcename5",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid61",
+				"name": "resourcename61",
+				"entry_type": "1"
+			},
+			{
+				"id": "resourceid7",
+				"name": "resourcename7",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid8",
+				"name": "resourcename8",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid9",
+				"name": "resourcename9",
+				"entry_type": "0"
+			},
+			{
+				"id": "resourceid10",
+				"name": "resourcename10",
+				"entry_type": "0"
+			}
+		];
+		$(function(){
+			$("#div-firstresource").JSONView(resourceDataOne);
+			$("#div-secondresource").JSONView(resourceDataTwo);
+		});
+	</script>
 </body>
 </html>
