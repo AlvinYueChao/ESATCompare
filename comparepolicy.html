@@ -2,8 +2,139 @@
 <html>
 <head>
 	<title>Compare Policy</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.jsonview.css">
+	<link rel="stylesheet" type="text/css" href="css/jsondiff.css">
 </head>
-<body>
-	compare policy page
+<body onload="init()">
+	<div class="container-fluid" style="margin: 0 15px">
+		<div class="row clearfix">
+			<div class="col-md-5">
+				<div class="row clearfix">
+					<div class="form-inline" style="margin: 20px 0">
+						<select class="selectpicker" id="select-firstenvironment" title="--environment--" style="width: auto">
+							<option>Prod</option>
+							<option>QA</option>
+							<option>UAT</option>
+							<option>DEV</option>
+						</select>
+						<input id="input-firstuserid" type="text" class="form-control" placeholder="User SoeId" style="margin: 0 15px">
+						<button id="btn-submitfirstquery" class="btn" style="width: auto">Submit</button>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div id="div-firstpolicy" style="padding: 10px; border: 1px solid black; width: 100%; height: 835px; overflow:auto"></div>
+				</div>
+			</div>
+			<div class="col-md-2" style="padding-top: 450px; padding-left: 15px; padding-right: 15px">
+				<button class="btn" id="btn-executediff" style="width: 100%" onclick=
+				"executeDiff()">Execute Diff</button>
+				<div style="margin: 15px 0">
+					<span>Diff information:</span>
+					<ul>
+						<li>Change are displayed in <span class="glyphicon glyphicon-text-background" style="color: #fcff7f"></span>.</li>
+						<li>Addition are displayed in <span class="glyphicon glyphicon-text-background" style="color: #8bff7f"></span>.</li>
+						<li>Deletion are displayed in <span class="glyphicon glyphicon-text-background" style="color: #fd7f7f"></span>.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="row clearfix">
+					<div class="form-inline"  style="margin: 20px 0">
+						<select class="selectpicker" id="select-secondenvironment" title="--environment--" style="width: auto">
+							<option>Prod</option>
+							<option>QA</option>
+							<option>UAT</option>
+							<option>DEV</option>
+						</select>
+						<input id="input-seconduserid" type="text" class="form-control" placeholder="User SoeId" style="margin: 0 15px">
+						<button id="btn-submitsecondquery" class="btn" style="width: auto">Submit</button>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div id="div-secondpolicy" style="padding: 10px; border: 1px solid black; width: 100%; height: 835px; overflow:auto"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div id="diffresult" style="margin-top: 15px; margin-bottom: 15px; border: 1px solid black; width: 100%; max-height: 800px; overflow: auto"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jsonview.js"></script>
+	<script type="text/javascript" src="js/jsondiff.js"></script>
+	<script>
+		var policyDataOne = [
+			{
+				"id": "policyid1",
+				"name": "policyname1"
+			},
+			{
+				"id": "policyid2",
+				"name": "policyname2"
+			},
+			{
+				"id": "policyid3",
+				"name": "policyname3"
+			},
+			{
+				"id": "policyid4",
+				"name": "policyname4"
+			},
+			{
+				"id": "policyid5",
+				"name": "policyname5"
+			},
+			{
+				"id": "policyid6",
+				"name": "policyname6"
+			}
+		];
+		var policyDataTwo = [
+			{
+				"id": "policyid1",
+				"name": "policyname1"
+			},
+			{
+				"id": "policyid2",
+				"name": "policyname2"
+			},
+			{
+				"id": "policyid3",
+				"name": "policyname3"
+			},
+			{
+				"id": "policyid4",
+				"name": "policyname4"
+			},
+			{
+				"id": "policyid5",
+				"name": "policyname51"
+			},
+			{
+				"id": "policyid6",
+				"name": "policyname6"
+			},
+			{
+				"id": "policyid7",
+				"name": "policyname7"
+			}			
+		];
+		$(function(){
+			$("#div-firstpolicy").JSONView(policyDataOne);
+			$("#div-secondpolicy").JSONView(policyDataTwo);
+		});
+		function init(){
+			document.addEventListener("click", clickHandler, false);
+		};
+		function executeDiff(){
+			var results = document.getElementById("diffresult");
+			removeAllChildren(results);
+			compareTree(policyDataOne, policyDataTwo, "ESAT Policy", results);
+		};
+	</script>
 </body>
 </html>
